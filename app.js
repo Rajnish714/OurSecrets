@@ -133,13 +133,6 @@ app.route("/submit").get((req, res) => {
     }
 })
 
-app.use("/home", (req, res) => {
-    if (req.isAuthenticated()) {
-        res.redirect("/secrets")
-    } else {
-        res.render("home")
-    }
-})
     .post((req, res) => {
         const userSecret = req.body.secret;
         User.findById(req.user.id).then((foundUser) => {
@@ -158,7 +151,13 @@ app.use("/home", (req, res) => {
         })
     })
 
-
+app.use("/home", (req, res) => {
+    if (req.isAuthenticated()) {
+        res.redirect("/secrets")
+    } else {
+        res.render("home")
+    }
+})
 app.get("/logout", (req, res) => {
     req.logout((err) => {
         if (err) {
