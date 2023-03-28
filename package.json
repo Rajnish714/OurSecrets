@@ -23,6 +23,9 @@
     "passport-local-mongoose": "^8.0.0",
     "supergoose": "^0.2.6"
   },
+  "engines": {
+    "node": "v16.15.0"
+  },
   "devDependencies": {},
   "description": ""
 }
