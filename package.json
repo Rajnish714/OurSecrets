@@ -24,7 +24,7 @@
     "supergoose": "^0.2.6"
   },
   "engines": {
-    "node": "v16.15.0"
+    "node": "v18.15.0"
   },
   "devDependencies": {},
   "description": ""

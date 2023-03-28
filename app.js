@@ -1,7 +1,7 @@
 //jshint esversion:6
 require("dotenv").config();
 const express = require("express");
-// const ejs = require("ejs");
+const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const session = require("express-session");
@@ -14,7 +14,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const app = express();
 
 app.use(express.static("public"));
-// app.set("view engine", "ejs");
+app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", (req, res) => {
