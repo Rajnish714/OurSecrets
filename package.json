@@ -11,6 +11,7 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
     "express-session": "^1.17.3",
     "find-or-create": "^2.0.0",
     "md5": "^2.3.0",
@@ -26,6 +27,5 @@
   "engines": {
     "node": "v18.15.0"
   },
-  "devDependencies": {},
   "description": ""
 }
