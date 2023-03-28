@@ -63,7 +63,7 @@ passport.use(new GoogleStrategy({
     callbackURL: 'http://localhost:3000/auth/google/secrets'
 }, async function (accessToken, refreshToken, profile, done) {
     try {
-        console.log(profile);
+
         // Find or create user in your database
         let user = await User.findOne({
             googleId: profile.id
