@@ -85,7 +85,7 @@ passport.use(new GoogleStrategy({
 }));
 
 app.get("/", (req, res) => {
-    res.render("home")
+    res.redirect("/secrets")
 })
 
 app.get('/auth/google',
@@ -120,7 +120,7 @@ app.route("/login")
 app.get("/secrets", (req, res) => {
     User.find({ "secret": { $ne: null } }).then(foundSecrets => {
         if (foundSecrets) {
-            res.render("secrets", { userSecrets: foundSecrets })
+            res.render("secrets", { userSecrets: foundSecrets, isAuthenticated: req.isAuthenticated() })
         }
     })
 });
@@ -129,7 +129,15 @@ app.route("/submit").get((req, res) => {
     if (req.isAuthenticated()) {
         res.render("submit")
     } else {
-        res.redirect("/")
+        res.redirect("/home")
+    }
+})
+
+app.use("/home", (req, res) => {
+    if (req.isAuthenticated()) {
+        res.redirect("/secrets")
+    } else {
+        res.render("home")
     }
 })
     .post((req, res) => {
