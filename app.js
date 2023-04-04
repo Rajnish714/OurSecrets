@@ -32,6 +32,7 @@ mongoose.connect(process.env.MONGO_URI)
 const userSchema = new mongoose.Schema({
     email: String,
     password: String,
+    googleId: String,
     secret: String
 })
 
@@ -44,6 +45,7 @@ passport.use(User.createStrategy());
 
 passport.serializeUser(function (user, cb) {
     process.nextTick(function () {
+
         cb(null, { id: user.id, username: user.username });
     });
 });
@@ -68,9 +70,12 @@ passport.use(new GoogleStrategy({
         let user = await User.findOne({
             googleId: profile.id
         });
+        console.log(profile);
+        console.log(user);
         if (!user) {
             // Create new user in database
-            const username = Array.isArray(profile.emails) && profile.emails.length > 0 ? profile.emails[0].value.split('@')[0] : '';
+            //const username = Array.isArray(profile.emails) && profile.emails.length > 0 ? profile.emails[0].value.split('@')[0] : '';
+
             const newUser = new User({
                 username: profile.displayName,
                 googleId: profile.id
